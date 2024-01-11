@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { User } from './reducer/type';
-import { useAppDispatch } from '../../redux/store';
+// import { useAppDispatch } from '../../redux/store';
+
 
 function RegistrationPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -10,13 +11,13 @@ function RegistrationPage(): JSX.Element {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     if (password === checkPassword) {
       const { data }: { data: { message: string; userInDb: User } } = await axios.post(
-        '/api/auth/registration',
+        '/api/auth/signin',
         {
           name,
           email,
@@ -25,7 +26,7 @@ function RegistrationPage(): JSX.Element {
       );
 
       if (data.message === 'success') {
-        dispatch({ type: 'auth/registration', payload: data.userInDb });
+        // dispatch({ type: 'auth/registration', payload: data.userInDb });
         navigate('/');
       }
     }
