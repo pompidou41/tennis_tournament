@@ -1,7 +1,12 @@
 import React from 'react';
+import TournamentsList from '../tournaments/TournamentsList';
 
 function mainPage(): JSX.Element {
-  return( <div>mainPage</div>)
+  return (
+    <div>
+      <TournamentsList />
+    </div>
+  );
 }
 
 export default mainPage;
