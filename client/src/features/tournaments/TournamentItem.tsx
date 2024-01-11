@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Tournament } from './tournamentType';
 
-function TournamentEl({ tournament }: { tournament: Tournament }): JSX.Element {
+function TournamentItem({ tournament }: { tournament: Tournament }): JSX.Element {
   return (
-    <div className='tournament'>
+    <div className="tournament">
       <h2>{tournament.name}</h2>
       <p>{tournament.description}</p>
       <p>{tournament.status}</p>
@@ -11,4 +11,4 @@ function TournamentEl({ tournament }: { tournament: Tournament }): JSX.Element {
   );
 }
 
-export default TournamentEl;
+export default TournamentItem;

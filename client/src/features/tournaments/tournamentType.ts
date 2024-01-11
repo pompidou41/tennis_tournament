@@ -1,5 +1,6 @@
 export type Tournament = {
-    name: string;
-    description: string;
-    status: string;
-}
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+};
