@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
-const APIRouter = require('./api/api.route');
+const tournamentsAPIRouter = require('./api/tournaments.api.route');
+const usersAPIRouter = require('./api/users.api.route');
 
-router.use('/api/', APIRouter);
+router.use('/api/tournaments', tournamentsAPIRouter);
+router.use('/api/users', usersAPIRouter);
 
 module.exports = router;
