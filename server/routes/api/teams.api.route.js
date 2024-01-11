@@ -1,18 +1,10 @@
 const router = require('express').Router();
-const { Tournament } = require('../../db/models');
+const { Team, User } = require('../../db/models');
 
-router.get('/', async (req, res) => {
-  try {
-    const tournaments = await Tournament.findAll();
-    return res.status(200).json({ message: 'success', tournaments });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: error.message });
-  }
-});
+
 
 router.post('/add', async (req, res) => {
-  const { name, description, status } = req.body;
+  const { user_1, user_2, tournament_id } = req.body;
   try {
     const tournament = await Tournament.create({ name, description, status });
     if (tournament) {
