@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
         onDelete: 'cascade',
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
     },
     {
