@@ -6,5 +6,5 @@ export type Action =
   | { type: 'auth/registration'; payload: User }
   | { type: 'auth/userCheck'; payload: User }
   | { type: 'auth/login'; payload: User }
-  | { type: 'auth/logout'; payload: { message: string } }
+  | { type: 'auth/logout' }
   | { type: 'load/tour'; payload: Tournament };

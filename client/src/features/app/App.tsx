@@ -18,12 +18,12 @@ function App(): JSX.Element {
     const res = await axios.get('/api/tournaments');
     dispatch({ type: 'load/tournaments', payload: res.data.tournaments });
   };
-  const user = useSelector((store: RootState) => store.auth.user);
+  // const user = useSelector((store: RootState) => store.auth.user);
 
-  const checkUser = async (): Promise<void> => {
-    const { data } = await axios.get('api/auth/check');
-    dispatch({ type: 'auth/userCheck', payload: data.user });
-  };
+  // const checkUser = async (): Promise<void> => {
+  //   const { data } = await axios.get('/api/auth/check');
+  //   dispatch({ type: 'auth/userCheck', payload: data.user });
+  // };
 
   // const loadTour = async (): Promise<void> => {
   //   const res = await axios.get(`/api/${t_id}/tour`);
@@ -31,11 +31,12 @@ function App(): JSX.Element {
   // };
 
   useEffect(() => {
-    checkUser();
+    axios
+      .get('/api/auth/check')
+      .then(({ data }) => dispatch({ type: 'auth/userCheck', payload: data.user }))
+      .catch(console.log);
     loadTournaments();
-  }, []);
-
-  console.log(user, 'YYYYYYYYYYYYYYY');
+  }, [dispatch]);
 
   return (
     <div className="App">
