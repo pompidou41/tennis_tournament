@@ -11,6 +11,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:t_id/tour', async (req, res) => {
+  const { tournament_id } = req.params;
+  try {
+    const tournament = await Tournament.findOne({ where: { tournament_id } });
+    return res.status(200).json({ message: 'success', tournament });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+});
+
 router.post('/add', async (req, res) => {
   const { name, description, status } = req.body;
   try {

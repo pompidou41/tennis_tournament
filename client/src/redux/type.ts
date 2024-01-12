@@ -7,3 +7,4 @@ export type Action =
   | { type: 'auth/userCheck'; payload: User }
   | { type: 'auth/login'; payload: User }
   | { type: 'auth/logout'; payload: { message: string } };
+  | { type: 'load/tour'; payload: Tournament };
