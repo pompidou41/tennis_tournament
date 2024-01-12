@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import reducerTournaments from '../Features/tournaments/reducer/reducerTournament';
+import reducerTournaments from '../features/tournaments/reducer/reducerTournament';
 import reducerAuth from '../features/auth/reducer/reducerAuth';
 
 const rootReducer = combineReducers({
