@@ -1,3 +1,5 @@
 import type { Tournament } from '../Features/tournaments/tournamentType';
 
-export type Action = { type: 'load/tournaments'; payload: Tournament[] };
+export type Action =
+  | { type: 'load/tournaments'; payload: Tournament[] }
+  | { type: 'load/tour'; payload: Tournament };
