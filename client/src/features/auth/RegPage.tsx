@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { User } from './reducer/type';
-// import { useAppDispatch } from '../../redux/store';
-
+import { useAppDispatch } from '../../redux/store';
 
 function RegistrationPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -11,12 +10,12 @@ function RegistrationPage(): JSX.Element {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     if (password === checkPassword) {
-      const { data }: { data: { message: string; userInDb: User } } = await axios.post(
+      const { data }: { data: { message: string; userDb: User } } = await axios.post(
         '/api/auth/signin',
         {
           name,
@@ -26,8 +25,15 @@ function RegistrationPage(): JSX.Element {
       );
 
       if (data.message === 'success') {
-        // dispatch({ type: 'auth/registration', payload: data.userInDb });
+        console.log(data);
+
+        dispatch({ type: "auth/registration", payload: data.userDb });
         navigate('/');
+        setName('');
+        setEmail('');
+        setPassword('');
+        setCheckPassword('');
+        
       }
     }
   };
@@ -79,9 +85,9 @@ function RegistrationPage(): JSX.Element {
       </label>
       <br />
       <div className="button-container">
-        <button type="submit">Sign up</button>
-        <Link to="/auth" className="login-button">
-          Sign in
+        <button type="submit">зарегистрироваться</button>
+        <Link to="/" className="login-button">
+          войти
         </Link>
       </div>
     </form>

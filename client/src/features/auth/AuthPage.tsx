@@ -1,23 +1,30 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/store';
 
 function AuthorizationPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const { data } = await axios.post('/api/auth/login', {
       email,
       password,
     });
+   
     if (data.message === 'success') {
-      dispatch({ type: 'auth/registration', payload: data.userInDb });
+      dispatch({ type: 'auth/login', payload: data.userDb });
       navigate('/');
+      setEmail('');
+      setPassword('');
     }
   };
 
   return (
-    <div className='registration-form'>
+    <div className="registration-form">
       <form onSubmit={onHandleSubmit}>
         <label htmlFor="email">
           Email:
@@ -42,6 +49,7 @@ function AuthorizationPage(): JSX.Element {
         </label>
         <br />
         <button type="submit">login</button>
+        <br />
       </form>
     </div>
   );

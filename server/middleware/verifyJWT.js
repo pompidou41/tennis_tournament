@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
-const cookiesConfig = require('../config/cookiesConfig');
-const { generateTokens } = require('../utils/authUtils');
+const jwt = require("jsonwebtoken");
+const cookiesConfig = require("../config/cookiesConfig");
+const { generateTokens } = require("../utils/authUtils");
 
 function verifyAccessToken(req, res, next) {
   try {
     const { access } = req.cookies;
-    const { user } = jwt.verify(access, 'a');
+    const { user } = jwt.verify(access, process.env.ACCESS_TOKEN_SECRET);
     res.locals.user = user;
     next();
   } catch (error) {
@@ -16,7 +16,7 @@ function verifyAccessToken(req, res, next) {
 function verifyRefreshToken(req, res, next) {
   try {
     const { refresh } = req.cookies;
-    const { user } = jwt.verify(refresh, 'r');
+    const { user } = jwt.verify(refresh, process.env.REFRESH_TOKEN_SECRET);
     const { accessToken, refreshToken } = generateTokens({
       user: { id: user.id, email: user.email, name: user.name },
     });
