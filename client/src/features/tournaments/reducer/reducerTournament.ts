@@ -11,7 +11,7 @@ export const stateTournaments: StateTournaments = {
 
 const reducerTournaments = (
   state: StateTournaments = stateTournaments,
-  action: Action,
+  action: Action
 ): StateTournaments => {
   switch (action.type) {
     case 'load/tournaments':
