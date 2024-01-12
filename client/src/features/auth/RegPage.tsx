@@ -39,6 +39,7 @@ function RegistrationPage(): JSX.Element {
   };
 
   return (
+    <div className="registration-form">
     <form className="registration-form" onSubmit={onHandleSubmit}>
       <label htmlFor="name">
         Name:
@@ -86,11 +87,10 @@ function RegistrationPage(): JSX.Element {
       <br />
       <div className="button-container">
         <button type="submit">зарегистрироваться</button>
-        <Link to="/" className="login-button">
-          войти
-        </Link>
+        
       </div>
     </form>
+    </div>
   );
 }
 

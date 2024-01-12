@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
 
 function AuthorizationPage(): JSX.Element {
+  // const[err,setErr]=useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
@@ -14,6 +15,7 @@ function AuthorizationPage(): JSX.Element {
       email,
       password,
     });
+    
    
     if (data.message === 'success') {
       dispatch({ type: 'auth/login', payload: data.userDb });
@@ -50,6 +52,8 @@ function AuthorizationPage(): JSX.Element {
         <br />
         <button type="submit">login</button>
         <br />
+        {/* { err &&
+          <p style={{color:'red'}}>{err}</p>} */}
       </form>
     </div>
   );
