@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import type { User } from './reducer/type';
+
 import { useAppDispatch } from '../../redux/store';
+import type { User } from './reducer/type';
 
 function RegistrationPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -27,13 +28,12 @@ function RegistrationPage(): JSX.Element {
       if (data.message === 'success') {
         console.log(data);
 
-        dispatch({ type: "auth/registration", payload: data.userDb });
+        dispatch({ type: 'auth/registration', payload: data.userDb });
         navigate('/');
         setName('');
         setEmail('');
         setPassword('');
         setCheckPassword('');
-        
       }
     }
   };
